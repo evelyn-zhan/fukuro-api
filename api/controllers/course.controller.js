@@ -1,4 +1,4 @@
-import Course from "../models/courses.model.js"
+import Course from "../models/course.model.js"
 
 export default {
     async fetchCourses(req, res) {
@@ -49,7 +49,7 @@ export default {
             const newCourse = new Course({ ...req.body })
             const savedCourse = await newCourse.save()
 
-            return res.status(201).json({
+            res.status(201).json({
                 "message": "Course created successfully!",
                 "data": savedCourse
             })

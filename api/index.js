@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 import mongoose from "mongoose"
 
 import courseRoute from "./routes/courses.js"
+import userRoute from "./routes/user.js"
 
 dotenv.config()
 
@@ -18,6 +19,7 @@ mongoose
 .catch((error) => console.log(`MongoDB connection error: ${error}`))
 
 app.use("/courses", courseRoute)
+app.use("/user", userRoute)
 
 const PORT = process.env.PORT || 8000
 app.listen(PORT, () => console.log(`Server is running on port http://localhost:${PORT}`))
