@@ -5,6 +5,7 @@ import mongoose from "mongoose"
 
 import courseRoute from "./routes/courses.js"
 import userRoute from "./routes/user.js"
+import dailyQuizRoute from "./routes/dailyquiz.js"
 
 dotenv.config()
 
@@ -20,6 +21,7 @@ mongoose
 
 app.use("/courses", courseRoute)
 app.use("/user", userRoute)
+app.use("/daily-quiz", dailyQuizRoute)
 
 const PORT = process.env.PORT || 8000
 app.listen(PORT, () => console.log(`Server is running on port http://localhost:${PORT}`))
