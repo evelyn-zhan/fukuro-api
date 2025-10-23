@@ -3,6 +3,23 @@ import User from "../models/user.model.js"
 import bcrypt from "bcrypt"
 
 export default {
+    async fetchUsers(req, res) {
+        try {
+            const users = await User.find().select("name email profile")
+
+            res.status(200).json({
+                "message": "Users fetched successfully!",
+                "data": users
+            })
+        }
+        catch (error) {
+            res.status(500).json({
+                "message": "Failed to fetch users.",
+                "error": error.message
+            })
+        }
+    },
+
     async signup(req, res) {
         try {
             const { email, password } = req.body
@@ -57,7 +74,8 @@ export default {
                 "message": "Login success!",
                 "data": {
                     "name": user.name,
-                    "email": user.email
+                    "email": user.email,
+                    "profile": user.profile
                 }
             })
         }
