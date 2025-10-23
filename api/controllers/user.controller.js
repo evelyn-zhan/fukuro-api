@@ -67,5 +67,36 @@ export default {
                 "error": error.message
             })
         }
+    },
+
+    async updateProfile(req, res) {
+        try {
+            const { email } = req.body
+
+            const user = await User.findOne({ email })
+
+            if (!user) {
+                return res.status(404).json({
+                    message: "Oops! We couldn't find that account."
+                })
+            }
+
+            const updatedUser = await User.findOneAndUpdate(
+                { email },
+                { ...req.body },
+                { new: true }
+            )
+
+            res.status(200).json({
+                "message": "Profile updated successfully!",
+                "data": updatedUser
+            })
+        }
+        catch (error) {
+            res.status(500).json({
+                "message": "Failed to update user profile",
+                "error": error.message
+            })
+        }
     }
 }

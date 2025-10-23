@@ -66,7 +66,7 @@ export default {
         try {
             const { id } = req.params;
 
-            const updatedCourse = await Course.findOneAndReplace(
+            const updatedCourse = await Course.findOneAndUpdate(
                 { _id: id },
                 { ...req.body },
                 { new: true }
