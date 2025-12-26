@@ -3,8 +3,9 @@ import cors from "cors"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 
-import courseRoute from "./routes/courses.js"
 import userRoute from "./routes/user.js"
+import courseRoute from "./routes/courses.js"
+import courseDetailRoute from "./routes/courseDetail.js"
 import dailyQuizRoute from "./routes/dailyquiz.js"
 
 dotenv.config()
@@ -19,8 +20,9 @@ mongoose
 .then(() => console.log("Connected to MongoDB"))
 .catch((error) => console.log(`MongoDB connection error: ${error}`))
 
-app.use("/courses", courseRoute)
 app.use("/user", userRoute)
+app.use("/courses", courseRoute)
+app.use("/course-detail", courseDetailRoute)
 app.use("/daily-quiz", dailyQuizRoute)
 
 const PORT = process.env.PORT || 8000
